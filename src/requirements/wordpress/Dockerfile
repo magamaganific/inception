@@ -10,7 +10,7 @@ RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli
 
 WORKDIR /tmp
 
-RUN curl -O https://wordpress.org/latest.tar.gz && tar -xzf latest.tar.gz && mv woordpress /tmp/wp && rm latest.tar.gz
+RUN curl -O https://wordpress.org/latest.tar.gz && tar -xzf latest.tar.gz && mv wordpress /tmp/wp && rm latest.tar.gz
 
 COPY conf/www.conf /etc/php/7.4/fpm/pool.d/
 

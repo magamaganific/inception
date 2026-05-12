@@ -4,11 +4,11 @@ RUN apt-get update && apt-get install -y nginx openssl && rm -rf /var/lib/apt/li
 
 COPY ./conf/default.conf /etc/nginx/sites-enables/default
 
-RUN mkdir /etc/nginx/certs && chmod 777 /etc/nginx/certs && \
+RUN mkdir /etc/nginx/certs/ && chmod 777 /etc/nginx/certs && \
 	openssl req -x509 -nodes -days 365 \
-	-newkey rsa:2048 -subj "/C=SP/ST=Spain/L=madrid/O=42/CN=localhost" \
-	-out /etc/nginx/certs/localhost.crt \
-	-keyout /ect/nginx/certs/localhost.key
+  -newkey rsa:2048 -subj "/C=SP/ST=Spain/L=Madrid/O=42/CN=localhost" \
+  -out /etc/nginx/certs/localhost.crt \
+  -keyout /etc/nginx/certs/localhost.key
 
 EXPOSE 443
 
