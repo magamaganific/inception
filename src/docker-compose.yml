@@ -1,16 +1,12 @@
-networks:
-  mfornovinet:
-    driver: bridge
-
 services:
   mariadb:
-    container_name: mariadb
     build:
-      contex: ./requirements/mariadb
+      context: ./requirements/mariadb
+    container_name: mariadb
     image: mariadb
     volumes:
       - mariadb_data:/var/lib/mysql
-      - ./requirements/mariadb/conf/mycnf:etc/mysql/mycnf:ro
+      - ./requirements/mariadb/conf/my.cnf:etc/mysql/my.cnf:ro
     ports:
       - "3306:3306"
     networks:
@@ -20,9 +16,9 @@ services:
     restart: always
 
   wordpress:
-    container_name: wordpress
     build:
-     context: ./requirements/wordpress
+      context: ./requirements/wordpress
+    container_name: wordpress
     image: wordpress
     volumes:
       - wordpress_files:/var/www/html
@@ -30,14 +26,14 @@ services:
       - mfornovinet
     env_file:
       - .env
-    deppends_on:
+    depends_on:
       - mariadb
     restart: always
   
   nginx:
-    container_name: nginx
     build:
-     context: ./requirements/nginx
+      context: ./requirements/nginx
+    container_name: nginx
     image: nginx
     ports:
       - "443:443"
@@ -45,8 +41,8 @@ services:
       - wordpress_files:/var/www/html
     networks:
       - mfornovinet
-    deppends_on:
-      - worpress
+    depends_on:
+      - wordpress
     restart: always
 
 volumes:
@@ -58,10 +54,14 @@ volumes:
       device: /home/mfornovi/data/MD
       o: bind
 
-  wordpress:
-    name: wordpress
+  wordpress_files:
+    name: wordpress_files
     driver: local
     driver_opts:
       type: none
       device: /home/mfornovi/data/WP
       o: bind
+    
+networks:
+  mfornovinet:
+    driver: bridge

@@ -1,18 +1,18 @@
 COMPOSE=docker compose
-COMPOSE_FILES=src/docker-compose.yml
+COMPOSE_FILE=src/docker-compose.yml
 
 all:up
 
 up:
-	$(COMPOSE) -f $(COMPOSE_FILES) up --build -d
+	$(COMPOSE) -f $(COMPOSE_FILE) up --build -d
 
 down:
-	$(COMPOSE) -f $(COMPOSE_FILES) down
+	$(COMPOSE) -f $(COMPOSE_FILE) down
 
 fclean:
 	sudo rm -rf /home/mfornovi/data/MD/*
 	sudo rm -rf /home/mfornovi/data/WP/*
-	$(COMPOSE) -f $(COMPOSE_FILES) down --volumes --remove-orphans
+	$(COMPOSE) -f $(COMPOSE_FILE) down --volumes --remove-orphans
 
 remove: down
 	sudo rm -rf /home/mfornovi/data/MD/*
