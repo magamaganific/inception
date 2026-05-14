@@ -13,6 +13,7 @@ services:
       - mfornovinet
     env_file:
       - .env
+      - ./secrets/.secrets
     restart: always
 
   wordpress:
@@ -26,6 +27,7 @@ services:
       - mfornovinet
     env_file:
       - .env
+      - ./secrets/.secrets
     depends_on:
       - mariadb
     restart: always
