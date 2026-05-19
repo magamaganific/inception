@@ -1,8 +1,19 @@
-FROM nginx:alpine
+FROM debian:bullseye
 
-RUN rm /etc/nginx/conf.d/default.conf
+RUN apt-get update && apt-get install -y \
+	nginx \
+	openssl \
+	&& rm -rf /var/lib/apt/lists/*
 
-COPY nginx.conf /etc/nginx/conf.d/nginx.conf
-COPY ssl/ /etc/nginx/ssl/
+RUN usermod -u 33 www-data && groupmod -g 33 www-data
 
-EXPOSE 80 443
+RUN mkdir -p /etc/nginx/ssl
+
+COPY conf/nginx.conf /etc/nginx/nginx.conf
+COPY tools/generate_ssl.sh /usr/local/bin/
+
+RUN chmod +x /usr/local/bin/*.sh
+
+EXPOSE 443
+
+ENTRYPOINT ["/usr/local/bin/generate_ssl.sh"]
