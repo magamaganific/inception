@@ -5,10 +5,10 @@ DATA_DIR = /home/$(USER)/data
 
 all: build up
 
-$(DATA_DIR)/mariadb;
+$(DATA_DIR)/mariadb:
 	mkdir -p $(DATA_DIR)/mariadb
 
-$(DATA_DIR)/wordpress;
+$(DATA_DIR)/wordpress:
 	mkdir -p $(DATA_DIR)/wordpress
 
 build: $(DATA_DIR)/mariadb $(DATA_DIR)/wordpress

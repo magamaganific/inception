@@ -24,14 +24,14 @@ services:
     image: wordpress:inception
     container_name: wordpress
     depends_on:
-      - mariadb:
+      - mariadb
     networks:
       - inception-network
     volumes:
       - wordpress_data:/var/www/html
     env_file:
       - .env
-    evironment:
+    environment:
       WORDPRESS_DB_HOST: mariadb
       WORDPRESS_DB_NAME: ${MYSQL_DATABASE}
       WORDPRESS_DB_USER: ${MYSQL_USER}
