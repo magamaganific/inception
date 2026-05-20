@@ -18,13 +18,18 @@ up: build
 	docker compose -f $(COMPOSE_FILE) up -d
 
 down:
-	docker compose -f $(COMPOSE_FILE) down
+	docker compose -f $(COMPOSE_FILE) down --remove-orphans
 
-clean:
-	docker compose -f $(COMPOSE_FILE) down --rmi local
+clean: down
+	docker compose -f $(COMPOSE_FILE) down --rmi local --remove-orphans
+	docker compose -f $(COMPOSE_FILE) down -v
+	docker image prune -f
 
 fclean: clean
 	sudo rm -rf $(DATA_DIR)
 	sudo docker system prune -af
+	docker container prune -f
+	docker image prune -af
+	docker volume prune -f
 
-re: fclean all
+re: down fclean all up

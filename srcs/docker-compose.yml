@@ -1,6 +1,6 @@
 services:
   mariadb:
-    build:
+    build: 
       context: requirements/mariadb
     image: mariadb:inception
     container_name: mariadb
@@ -17,7 +17,7 @@ services:
       - db_root_password
       - db_password
     restart: always
-  
+
   wordpress:
     build:
       context: requirements/wordpress
@@ -40,7 +40,7 @@ services:
     secrets:
       - db_password
     restart: always
-  
+
   nginx:
     build:
       context: requirements/nginx
@@ -62,7 +62,7 @@ services:
 networks:
   inception-network:
     driver: bridge
-  
+
 volumes:
   mariadb_data:
     driver: local

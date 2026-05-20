@@ -1,9 +1,9 @@
 FROM debian:bullseye
 
 RUN apt-get update && apt-get install -y \
-	nginx \
-	openssl \
-	&& rm -rf /var/lib/apt/lists/*
+    nginx \
+    openssl \
+    && rm -rf /var/lib/apt/lists/*
 
 RUN usermod -u 33 www-data && groupmod -g 33 www-data
 
