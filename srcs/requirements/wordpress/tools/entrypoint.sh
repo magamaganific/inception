@@ -50,7 +50,7 @@ EOF
     --url="${DOMAIN_NAME}"\
     --title="${WORDPRESS_TITLE}"\
     --admin_user="${WORDPRESS_WEB_ADMIN}"\
-    --admin_password="${WEB_ADMIN_PASWORD}"\
+    --admin_password="${WEB_ADMIN_PASSWORD}"\
     --admin_email="${WEB_ADMIN_EMAIL}"\
     --skip-email
 
