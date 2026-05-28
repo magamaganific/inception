@@ -15,7 +15,7 @@ pid="$!"
 
 echo "Waiting for MariaDB to be ready..."
 until mysqladmin --socket=/run/mysqld/mysqld.sock ping >/dev/null 2>&1; do
-    sleep 1
+    sleep 2
 done
 echo "MariaDB is ready!"
 

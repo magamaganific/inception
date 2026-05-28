@@ -1,3 +1,4 @@
+#!/bin/bash
 set -e
 
 WP_PATH="/var/www/html"
@@ -24,7 +25,7 @@ if [ ! -f "$WP_PATH/wp-config.php" ]; then
 <?php
 define('DB_NAME', '${WORDPRESS_DB_NAME}');
 define('DB_USER', '${WORDPRESS_DB_USER}');
-define('DB_PASSWORD', ${WORDPRESS_DB_PASSWORD}');
+define('DB_PASSWORD', '${WORDPRESS_DB_PASSWORD}');
 define('DB_HOST', '${WORDPRESS_DB_HOST}');
 define('DB_CHARSET', 'utf8');
 define('DB_COLLATE', '');

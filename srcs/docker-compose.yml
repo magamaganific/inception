@@ -17,6 +17,12 @@ services:
       - db_root_password
       - db_password
     restart: always
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "--silent"]
+      start_period: 30s
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   wordpress:
     build:
@@ -24,7 +30,8 @@ services:
     image: wordpress:inception
     container_name: wordpress
     depends_on:
-      - mariadb
+      mariadb:
+        condition: service_healthy
     networks:
       - inception-network
     volumes:
