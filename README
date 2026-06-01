@@ -54,5 +54,13 @@ Virtual machines run a full operating syste with dedicated resources and provide
 
 Meanwhile, Docker runs containers that share the Host's OS, so they are much lighter and portable.
 
-## Secrets vs Environment Variables
-They can be interconected. The environment variables store configurationn values that can be accessed by apps 
+### Secrets vs Environment Variables
+Secrets keep sensitive data like passwords stored securely and only accesible by the revices that needd them.
+
+The environment variables store configurationn values that can be accessed by apps, but are less secure than secrets.
+### Docker network vs Host network
+* Docker Network: Creates an isolated virtual network for containers, allowing them to communicate with each other securely while controlling which ports are exposed to the host.
+* Host Network: Makes a container share the host machine’s network stack, giving the container direct access to the host’s IP addresses and ports, but with less isolation.
+### Docker Volumes vs Bind Mounts.
+* Docker Volumes: Volumes are managed by Docker and stored in Docker’s directory. They are ideal for persistent data, can be easily backed up, and are portable between containers.
+* Bind Mounts: Bind mounts map a directory or file from the host directly into a container. They provide full access to the host filesystem but offer less portability and isolation.
