@@ -54,7 +54,6 @@ services:
     image: nginx:inception
     ports:
       - "443:443"
-      - "80:80"
     container_name: nginx
     depends_on:
       - wordpress
